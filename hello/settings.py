@@ -140,6 +140,8 @@ EMAIL_HOST_USER = "lpuopportunity67@gmail.com"
 
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
+EMAIL_TIMEOUT = 10
+
 
 
 STATIC_URL = "static/"
