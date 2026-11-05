@@ -1,0 +1,273 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{% block title %}LPU Opportunities{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+
+  <body>
+
+    <!-- NAV BAR -->
+    <nav class="navbar navbar-expand-lg opportunity-navbar">
+
+      <div class="container">
+
+        <a class="navbar-brand" href="{% url 'home' %}">
+          LPU Opportunities
+        </a>
+
+
+        <div class="navbar-nav ms-auto">
+
+          <a class="nav-link" href="{% url 'home' %}">
+            <span class="mobile-nav-icon">⌂</span>
+            <span>Home</span>
+          </a>
+
+
+          <a class="nav-link" href="{% url 'my_opportunities' %}">
+            <span class="mobile-nav-icon">▣</span>
+            <span>My Opportunities</span>
+          </a>
+
+
+          <a class="nav-link" href="{% url 'my_applications' %}">
+            <span class="mobile-nav-icon">✓</span>
+            <span>My Applications</span>
+          </a>
+
+
+          <!-- MESSAGES -->
+
+            <a
+              class="nav-link message-link"
+              href="{% url 'messages' %}"
+            >
+              <span class="mobile-nav-icon">💬</span>
+              <span>Messages</span>
+
+              {% if messages_unread_count > 0 %}
+                  <span class="message-unread-badge">
+                      {{ messages_unread_count }}
+                  </span>
+              {% endif %}
+          </a>
+
+
+          <a
+            class="nav-link notification-link"
+            href="{% url 'notifications' %}"
+          >
+            <span class="mobile-nav-icon">🔔</span>
+            <span>Notifications</span>
+
+            {% if unread_count > 0 %}
+            <span class="notification-badge">
+              {{ unread_count }}
+            </span>
+            {% endif %}
+          </a>
+
+
+          <a
+            class="nav-link"
+            href="{% url 'create_opportunity' %}"
+          >
+            <span class="mobile-nav-icon">＋</span>
+            <span>Create Opportunity</span>
+          </a>
+
+
+          <!-- ACCOUNT DROPDOWN -->
+
+          <div class="dropdown">
+
+            <button
+              class="nav-link account-button dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+
+              <span class="mobile-nav-icon">👤</span>
+              <span>Account</span>
+
+            </button>
+
+
+            <ul class="dropdown-menu dropdown-menu-end account-dropdown">
+
+              <li>
+
+                <a
+                  class="dropdown-item"
+                  href="{% url 'profile' %}"
+                >
+                  👤 View Profile
+                </a>
+
+              </li>
+
+
+              <li>
+
+                <a
+                  class="dropdown-item"
+                  href="{% url 'edit_profile' %}"
+                >
+                  ✏️ Edit Your Profile
+                </a>
+
+              </li>
+
+
+              <li>
+
+                <a
+                  class="dropdown-item"
+                  href="{% url 'settings' %}"
+                >
+                  ⚙️ Settings
+                </a>
+
+              </li>
+
+
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+
+
+              <li>
+
+                  <form
+                      method="POST"
+                      action="{% url 'logout' %}"
+                      style="margin: 0;"
+                  >
+                      {% csrf_token %}
+
+                      <button
+                          type="submit"
+                          class="dropdown-item logout-dropdown"
+                      >
+                          ↪ Logout
+                      </button>
+
+                  </form>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+
+    <main class="container py-5">
+
+      {% if messages %}
+
+        {% for message in messages %}
+
+          <div
+            class="alert
+            {% if message.tags == 'success' %}
+              alert-success
+            {% else %}
+              alert-danger
+            {% endif %}
+            alert-dismissible fade show"
+            role="alert"
+          >
+
+            {{ message }}
+
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+
+          </div>
+
+        {% endfor %}
+
+      {% endif %}
+
+
+      {% block content %}
+
+      {% endblock %}
+
+    </main>
+
+
+    <!-- Bootstrap JS -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+
+      function toggleOpportunityMenu(button) {
+
+          const menu = button.nextElementSibling;
+
+          document
+              .querySelectorAll(".opportunity-menu-dropdown.show")
+              .forEach(function(openMenu) {
+
+                  if (openMenu !== menu) {
+                      openMenu.classList.remove("show");
+                  }
+
+              });
+
+          menu.classList.toggle("show");
+      }
+
+
+      document.addEventListener("click", function(event) {
+
+          if (!event.target.closest(".opportunity-menu")) {
+
+              document
+                  .querySelectorAll(".opportunity-menu-dropdown.show")
+                  .forEach(function(menu) {
+
+                      menu.classList.remove("show");
+
+                  });
+
+          }
+
+      });
+
+    </script>
+
+  </body>
+</html>
+

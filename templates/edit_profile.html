@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if not profile.course and not profile.year and not profile.specialization and not profile.skills and not profile.bio %}
+        Create Profile
+    {% else %}
+        Edit Profile
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">LPU OPPORTUNITIES</p>
+
+        {% if not profile.course and not profile.year and not profile.specialization and not profile.skills and not profile.bio %}
+
+            <h1>Create Profile</h1>
+
+            <p class="login-subtitle">
+                Complete your profile to continue.
+            </p>
+
+        {% else %}
+
+            <h1>Edit Profile</h1>
+
+            <p class="login-subtitle">
+                Update your profile information.
+            </p>
+
+        {% endif %}
+
+
+        <form method="POST">
+            {% csrf_token %}
+
+
+            <div class="login-field">
+                <label>Course</label>
+
+                <input
+                    type="text"
+                    name="course"
+                    value="{{ profile.course }}"
+                    placeholder="e.g. B.Tech CSE"
+                    required
+                >
+            </div>
+
+
+            <div class="login-field">
+                <label>Year</label>
+
+                <input
+                    type="text"
+                    name="year"
+                    value="{{ profile.year }}"
+                    placeholder="e.g. 2nd Year"
+                    required
+                >
+            </div>
+
+
+            <div class="login-field">
+                <label>Specialization</label>
+
+                <input
+                    type="text"
+                    name="specialization"
+                    value="{{ profile.specialization }}"
+                    placeholder="e.g. AI & Machine Learning"
+                    required
+                >
+            </div>
+
+
+            <div class="login-field">
+                <label>Skills</label>
+
+                <input
+                    type="text"
+                    name="skills"
+                    value="{{ profile.skills }}"
+                    placeholder="e.g. Python, Django, SQL"
+                    required
+                >
+            </div>
+
+
+            <div class="login-field">
+                <label>About Me</label>
+
+                <textarea
+                    name="bio"
+                    rows="5"
+                    placeholder="Tell others about yourself..."
+                    required
+                >{{ profile.bio }}</textarea>
+            </div>
+
+
+            <button type="submit" class="login-button">
+
+                {% if not profile.course and not profile.year and not profile.specialization and not profile.skills and not profile.bio %}
+                    <span>Create Profile</span>
+                {% else %}
+                    <span>Save Changes</span>
+                {% endif %}
+
+                <span>→</span>
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

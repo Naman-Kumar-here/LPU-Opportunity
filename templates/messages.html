@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+
+<div class="home-header">
+
+    <p class="small-heading">
+        LPU OPPORTUNITIES
+    </p>
+
+    <h1>
+        💬 Messages
+    </h1>
+
+    <p class="home-subtitle">
+        Your conversations and team chats.
+    </p>
+
+</div>
+
+
+<div class="messages-page">
+
+    {% for conversation in conversations %}
+
+        <a
+            href="{% url 'chat' conversation.id %}"
+            class="message-card
+            {% if conversation.unread_count > 0 %}
+                unread-message-card
+            {% endif %}"
+        >
+
+            <!-- ICON -->
+
+            <div class="message-card-icon">
+                💬
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="message-card-content">
+
+                <h3 class="message-card-title">
+                    {{ conversation.opportunity.title }}
+                </h3>
+
+
+                <p class="message-card-user">
+                    {{ conversation.other_user.username }}
+                </p>
+
+
+                {% if conversation.last_message %}
+
+                    <p class="message-card-last-message">
+
+                        {% if conversation.last_message.sender == request.user %}
+                            <strong>You:</strong>
+                        {% endif %}
+
+                        {{ conversation.last_message.content|truncatechars:55 }}
+
+                    </p>
+
+                {% else %}
+
+                    <p class="message-card-last-message">
+                        No messages yet.
+                    </p>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- RIGHT SIDE -->
+
+            <div class="message-card-right">
+
+                {% if conversation.last_message %}
+
+                    <span class="message-card-time">
+                        {{ conversation.last_message.created_at|date:"d M, h:i A" }}
+                    </span>
+
+                {% endif %}
+
+
+                {% if conversation.unread_count > 0 %}
+
+                    <span class="message-unread-badge">
+                        {{ conversation.unread_count }}
+                    </span>
+
+                {% endif %}
+
+            </div>
+
+        </a>
+
+    {% empty %}
+
+        <div class="empty-opportunities">
+
+            <div class="empty-icon">
+                💬
+            </div>
+
+            <h3>
+                No Messages Yet
+            </h3>
+
+            <p>
+                Your conversations will appear here once
+                you join an opportunity.
+            </p>
+
+            <a
+                href="{% url 'home' %}"
+                class="btn-back"
+            >
+                Explore Opportunities →
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

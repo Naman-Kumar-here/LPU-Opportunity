@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="home-header">
+  <div>
+    <p class="small-heading">LPU OPPORTUNITIES</p>
+    <h1>Available Opportunities</h1>
+    <p class="home-subtitle">
+      Discover opportunities, join teams and build something great.
+    </p>
+  </div>
+</div>
+
+
+<!-- SEARCH / FILTER / SORT -->
+
+<form method="GET" class="opportunity-filters">
+
+  <!-- Search -->
+  <div class="search-box">
+
+    <input
+      type="text"
+      name="search"
+      placeholder="Search opportunities..."
+      value="{{ search_query }}"
+    >
+
+    <button type="submit" class="search-button">
+      Search
+    </button>
+
+  </div>
+
+
+  <!-- Category -->
+  <div class="filter-group">
+
+    <select name="category">
+
+      <option value="">
+        All Categories
+      </option>
+
+      <option value="hackathon"
+        {% if selected_category == "hackathon" %}selected{% endif %}>
+        Hackathon
+      </option>
+
+      <option value="research"
+        {% if selected_category == "research" %}selected{% endif %}>
+        Research
+      </option>
+
+      <option value="internship"
+        {% if selected_category == "internship" %}selected{% endif %}>
+        Internship
+      </option>
+
+      <option value="workshop"
+        {% if selected_category == "workshop" %}selected{% endif %}>
+        Workshop
+      </option>
+
+      <option value="competition"
+        {% if selected_category == "competition" %}selected{% endif %}>
+        Competition
+      </option>
+
+      <option value="event"
+        {% if selected_category == "event" %}selected{% endif %}>
+        Event
+      </option>
+
+      <option value="project"
+        {% if selected_category == "project" %}selected{% endif %}>
+        Project
+      </option>
+
+      <option value="club"
+        {% if selected_category == "club" %}selected{% endif %}>
+        Club / Society
+      </option>
+
+      <option value="volunteering"
+        {% if selected_category == "volunteering" %}selected{% endif %}>
+        Volunteering
+      </option>
+
+      <option value="other"
+        {% if selected_category == "other" %}selected{% endif %}>
+        Other
+      </option>
+
+    </select>
+
+  </div>
+
+
+  <!-- Sort -->
+  <div class="filter-group">
+
+    <select name="sort">
+
+      <option value="newest"
+        {% if selected_sort == "newest" %}selected{% endif %}>
+        Newest First
+      </option>
+
+      <option value="oldest"
+        {% if selected_sort == "oldest" %}selected{% endif %}>
+        Oldest First
+      </option>
+
+      <option value="students_high"
+        {% if selected_sort == "students_high" %}selected{% endif %}>
+        Students Needed: High → Low
+      </option>
+
+      <option value="students_low"
+        {% if selected_sort == "students_low" %}selected{% endif %}>
+        Students Needed: Low → High
+      </option>
+
+      <option value="seats_high"
+        {% if selected_sort == "seats_high" %}selected{% endif %}>
+        Seats Left: High → Low
+      </option>
+
+      <option value="seats_low"
+        {% if selected_sort == "seats_low" %}selected{% endif %}>
+        Seats Left: Low → High
+      </option>
+
+    </select>
+
+  </div>
+
+
+
+
+</form>
+
+
+<!-- OPPORTUNITIES -->
+
+<div class="row g-4">
+
+  {% for opportunity in opportunities %}
+
+    <div class="col-md-6 col-lg-4">
+
+      <div class="opportunity-card h-100">
+
+        <!-- Card Header -->
+        <div class="opportunity-top">
+
+          <span class="opportunity-badge">
+            {{ opportunity.get_category_display }}
+          </span>
+
+          <div class="opportunity-icon">
+            +
+          </div>
+
+        </div>
+
+
+        <!-- Title -->
+        <h3 class="opportunity-title">
+          {{ opportunity.title|truncatechars:55 }}
+        </h3>
+
+
+        <!-- Description -->
+        <p class="opportunity-description">
+          {{ opportunity.description|truncatewords:25 }}
+        </p>
+
+
+        <!-- Statistics -->
+        <div class="opportunity-stats">
+
+          <div class="stat-box">
+            <span class="stat-number">
+              {{ opportunity.students_needed }}
+            </span>
+            <span class="stat-label">
+              Students Needed
+            </span>
+          </div>
+
+
+          <div class="stat-box">
+            <span class="stat-number accepted">
+              {{ opportunity.accepted_count }}
+            </span>
+            <span class="stat-label">
+              Accepted
+            </span>
+          </div>
+
+
+          <div class="stat-box">
+            <span class="stat-number available">
+              {{ opportunity.available_seats }}
+            </span>
+            <span class="stat-label">
+              Seats Left
+            </span>
+          </div>
+
+        </div>
+
+
+        <!-- Posted By -->
+        <div class="posted-by">
+          <span>Posted by</span>
+          <strong>{{ opportunity.posted_by.username }}</strong>
+        </div>
+
+
+        <!-- Button -->
+        <a
+          href="{% url 'opportunity_detail' opportunity.id %}"
+          class="opportunity-button"
+        >
+          View Opportunity
+          <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+
+  {% empty %}
+
+    <div class="col-12">
+
+      <div class="empty-opportunities">
+
+        <div class="empty-icon">
+          ✦
+        </div>
+
+        <h3>No opportunities available</h3>
+
+        <p>
+          There are no open opportunities right now.
+        </p>
+
+      </div>
+
+    </div>
+
+  {% endfor %}
+
+</div>
+
+<script>
+    document.querySelectorAll('.filter-group select').forEach(function(select) {
+
+        select.addEventListener('change', function() {
+            this.form.submit();
+        });
+
+    });
+</script>
+
+{% endblock %}

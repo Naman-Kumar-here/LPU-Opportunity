@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}My Opportunities{% endblock %}
+
+{% block content %}
+
+<div class="home-header">
+
+    <p class="small-heading">
+        LPU OPPORTUNITIES
+    </p>
+
+    <h1>
+        My Opportunities
+    </h1>
+
+    <p class="home-subtitle">
+        Manage the opportunities you have created.
+    </p>
+
+</div>
+
+
+<div class="my-opportunities-grid">
+
+    {% for opportunity in opportunities %}
+
+    <div class="opportunity-card">
+
+        <!-- TOP -->
+        <div class="opportunity-top">
+
+            <span class="opportunity-badge">
+                My Opportunity
+            </span>
+
+
+            <!-- THREE DOT MENU -->
+            <div class="opportunity-menu">
+
+                <button
+                    class="opportunity-menu-button"
+                    type="button"
+                    onclick="toggleOpportunityMenu(this)"
+                >
+                    ⋮
+                </button>
+
+
+                <div class="opportunity-menu-dropdown">
+
+                    <a href="{% url 'edit_opportunity' opportunity.id %}">
+                        Edit Opportunity
+                    </a>
+
+                    <a
+                        href="{% url 'delete_opportunity' opportunity.id %}"
+                        class="delete-option"
+                    >
+                        Delete Opportunity
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TITLE -->
+        <h2 class="opportunity-title">
+            {{ opportunity.title }}
+        </h2>
+
+
+        <!-- DESCRIPTION -->
+        <p class="opportunity-description">
+            {{ opportunity.description }}
+        </p>
+
+
+        <!-- STATS -->
+        <div class="opportunity-stats">
+
+            <div class="stat-box">
+
+                <span class="stat-number">
+                    {{ opportunity.students_needed }}
+                </span>
+
+                <span class="stat-label">
+                    Students Needed
+                </span>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span class="stat-number accepted">
+                    {{ opportunity.accepted_count }}
+                </span>
+
+                <span class="stat-label">
+                    Accepted
+                </span>
+
+            </div>
+
+
+            <div class="stat-box">
+
+                <span class="stat-number available">
+                    {{ opportunity.seats_left }}
+                </span>
+
+                <span class="stat-label">
+                    Seats Left
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTION BUTTONS -->
+        <div class="my-opportunity-actions">
+
+            <a
+                href="{% url 'opportunity_detail' opportunity.id %}"
+                class="view-opportunity-btn"
+            >
+                <span>View</span>
+                <span>Opportunity</span>
+            </a>
+
+
+            <a
+                href="{% url 'opportunity_applications' opportunity.id %}"
+                class="applications-button"
+            >
+
+                <div class="applications-text">
+                    <span>View</span>
+                    <span>Applications</span>
+                </div>
+
+                <span class="applications-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    {% empty %}
+
+    <div class="empty-opportunities">
+
+        <div class="empty-icon">
+            ✦
+        </div>
+
+        <h3>
+            No Opportunities Yet
+        </h3>
+
+        <p>
+            You haven't created any opportunities yet.
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<br>
+
+<a href="{% url 'home' %}" class="btn-back">
+    ← Back to Home
+</a>
+
+
+<!-- OPPORTUNITY MENU SCRIPT -->
+<script>
+
+function toggleOpportunityMenu(button) {
+
+    const menu = button.nextElementSibling;
+
+    document
+        .querySelectorAll(".opportunity-menu-dropdown.show")
+        .forEach(function(openMenu) {
+
+            if (openMenu !== menu) {
+                openMenu.classList.remove("show");
+            }
+
+        });
+
+    menu.classList.toggle("show");
+}
+
+
+document.addEventListener("click", function(event) {
+
+    if (!event.target.closest(".opportunity-menu")) {
+
+        document
+            .querySelectorAll(".opportunity-menu-dropdown.show")
+            .forEach(function(menu) {
+
+                menu.classList.remove("show");
+
+            });
+
+    }
+
+});
+
+</script>
+
+{% endblock %}

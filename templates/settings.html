@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">
+            LPU OPPORTUNITIES
+        </p>
+
+        <h1>⚙️ Settings</h1>
+
+        <p class="login-subtitle">
+            Manage your account settings.
+        </p>
+
+
+        <div class="settings-options">
+
+
+            <!-- CHANGE PASSWORD -->
+
+            <div class="settings-option">
+
+                <div>
+                    <a href="{% url 'change_password' %}">
+                        <strong>🔒 Change Password</strong>
+                    </a>
+
+                    <p>
+                        Update your account password.
+                    </p>
+                </div>
+
+                <span>→</span>
+
+            </div>
+
+
+            <!-- NOTIFICATIONS -->
+
+<div class="settings-option">
+
+    <div>
+        <strong>🔔 Notifications</strong>
+
+        <p>
+            Control your notification preferences.
+        </p>
+    </div>
+
+    <form method="POST" action="{% url 'toggle_notifications' %}">
+        {% csrf_token %}
+
+        <label class="notification-switch">
+
+            <input
+                type="checkbox"
+                {% if request.user.profile.notifications_enabled %}
+                    checked
+                {% endif %}
+                onchange="this.form.submit()"
+            >
+
+            <span class="notification-slider"></span>
+
+        </label>
+
+    </form>
+
+</div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

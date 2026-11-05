@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">LPU OPPORTUNITIES</p>
+
+        <h1>{{ profile.user.username }}</h1>
+
+        <p class="login-subtitle">
+            Student Profile
+        </p>
+
+        <div class="profile-info">
+
+            <div class="profile-item">
+                <span>Course :- </span>
+                <strong>{{ profile.course|default:"Not added yet" }}</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>Year :- </span>
+                <strong>{{ profile.year|default:"Not added yet" }}</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>Specialization :- </span>
+                <strong>{{ profile.specialization|default:"Not added yet" }}</strong>
+            </div>
+
+            <div class="profile-item">
+                <span>Skills :- </span>
+                <strong>{{ profile.skills|default:"Not added yet" }}</strong>
+            </div>
+
+            <div class="profile-item bio-item">
+                <span>About Me :- </span>
+                <p>
+                    {{ profile.bio|default:"No bio added yet." }}
+                </p>
+            </div>
+
+        </div>
+
+        <a href="{% url 'edit_profile' %}" class="login-button profile-edit-button">
+            <span>Edit Profile</span>
+            <span>→</span>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

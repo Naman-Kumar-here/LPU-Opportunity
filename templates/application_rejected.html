@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}Application Update{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">
+            LPU OPPORTUNITIES
+        </p>
+
+        <h1>
+            Application Update
+        </h1>
+
+        <p class="login-subtitle">
+            We have an update regarding your application.
+        </p>
+
+
+        <div class="application-rejected-message">
+
+            <div class="rejected-icon">
+                ✕
+            </div>
+
+            <h2>
+                Application Not Selected
+            </h2>
+
+            <p>
+                Unfortunately, your application for
+                <strong>{{ opportunity.title }}</strong>
+                was not accepted this time.
+            </p>
+
+            <p>
+                Don't worry! Keep exploring other opportunities
+                and apply for the ones that interest you.
+            </p>
+
+        </div>
+
+
+        <a href="{% url 'home' %}" class="login-button">
+            <span>Explore Opportunities</span>
+            <span>→</span>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

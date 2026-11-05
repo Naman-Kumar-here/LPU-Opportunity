@@ -1,0 +1,181 @@
+{% extends "base.html" %}
+
+{% block title %}Applicant Profile{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">
+            LPU OPPORTUNITIES
+        </p>
+
+        <!-- APPLICANT -->
+
+        <div class="applicant-profile-header">
+
+            <div class="applicant-avatar">
+                {{ application.applicant.username|first|upper }}
+            </div>
+
+            <div>
+
+                <h1>
+                    {{ application.applicant.username }}
+                </h1>
+
+                <p class="login-subtitle">
+                    Applicant Profile
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE DETAILS -->
+
+        <div class="profile-info">
+
+            <div class="profile-item">
+
+                <span>Course</span>
+
+                <strong>
+                    {{ application.applicant.profile.course|default:"Not added" }}
+                </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                <span>Year</span>
+
+                <strong>
+                    {{ application.applicant.profile.year|default:"Not added" }}
+                </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                <span>Specialization</span>
+
+                <strong>
+                    {{ application.applicant.profile.specialization|default:"Not added" }}
+                </strong>
+
+            </div>
+
+
+            <div class="profile-item">
+
+                <span>Skills</span>
+
+                <strong>
+                    {{ application.applicant.profile.skills|default:"Not added" }}
+                </strong>
+
+            </div>
+
+
+            <div class="profile-item bio-item">
+
+                <span>About Me</span>
+
+                <p>
+                    {{ application.applicant.profile.bio|default:"No bio added yet." }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- APPLICATION INFO -->
+
+        <div class="applicant-application-info">
+
+            <span>Applied For</span>
+
+            <strong>
+                {{ application.opportunity.title }}
+            </strong>
+
+            <p>
+                Applied {{ application.applied_at|date:"d M Y, h:i A" }}
+            </p>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="applicant-status">
+
+            {% if application.status == "accepted" %}
+
+                <span class="application-status accepted-status">
+                    Accepted
+                </span>
+
+            {% elif application.status == "rejected" %}
+
+                <span class="application-status rejected-status">
+                    Rejected
+                </span>
+
+            {% else %}
+
+                <span class="application-status pending-status">
+                    Pending
+                </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        {% if application.status == "pending" %}
+
+        <div class="applicant-actions">
+
+            <a
+                href="{% url 'accept_application' application.id %}"
+                class="accept-button"
+            >
+                ✓ Accept
+            </a>
+
+            <a
+                href="{% url 'reject_application' application.id %}"
+                class="reject-button"
+            >
+                ✕ Reject
+            </a>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- BACK -->
+
+        <a
+            href="{% url 'opportunity_applications' application.opportunity.id %}"
+            class="btn-back"
+        >
+            ← Back to Applications
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

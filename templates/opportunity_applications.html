@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Applications{% endblock %}
+
+{% block content %}
+
+<div class="home-header">
+
+    <p class="small-heading">
+        LPU OPPORTUNITIES
+    </p>
+
+    <h1>
+        Applications
+    </h1>
+
+    <p class="home-subtitle">
+        Review students who applied for this opportunity.
+    </p>
+
+</div>
+
+
+<!-- OPPORTUNITY SUMMARY -->
+
+<div class="applications-summary">
+
+    <a
+        href="{% url 'opportunity_detail' opportunity.id %}"
+        class="application-opportunity-link"
+    >
+        <span>Opportunity</span>
+
+        <strong>
+            {{ opportunity.title|truncatechars:50 }}
+        </strong>
+
+        <small>View Opportunity →</small>
+    </a>
+
+    <div>
+        <span>Students Needed</span>
+        <strong>{{ opportunity.students_needed }}</strong>
+    </div>
+
+    <div>
+        <span>Accepted</span>
+        <strong class="accepted-number">
+            {{ accepted_count }}
+        </strong>
+    </div>
+
+    <div>
+        <span>Seats Left</span>
+        <strong class="available-number">
+            {{ available_seats }}
+        </strong>
+    </div>
+
+</div>
+
+{% if available_seats > 0 and opportunity.member_left %}
+
+<div class="urgent-member-section">
+
+    <form
+        method="POST"
+        action="{% url 'urgent_member' opportunity.id %}"
+        style="display: inline;"
+    >
+        {% csrf_token %}
+
+        <button
+            type="submit"
+            class="urgent-member-button"
+        >
+            🚨 Need Member Urgently
+        </button>
+    </form>
+
+    <p>
+        {{ available_seats }}
+        member{{ available_seats|pluralize }}
+        needed.
+    </p>
+
+</div>
+
+{% endif %}
+
+<!-- APPLICANTS -->
+
+<div class="applications-section">
+
+    <div class="applications-section-header">
+
+        <h2>
+            Applicants
+        </h2>
+
+        <span>
+            {{ applications|length }}
+            application{{ applications|length|pluralize }}
+        </span>
+
+    </div>
+
+
+    {% for application in applications %}
+
+    <div class="applicant-card">
+
+        <!-- APPLICANT HEADER -->
+
+        <div class="applicant-info">
+
+            <div class="applicant-avatar">
+                {{ application.applicant.username|first|upper }}
+            </div>
+
+            <div>
+
+                <h3>
+                    <a href="{% url 'applicant_profile' application.id %}">
+                    {{ application.applicant.username }}
+                    </a>
+                </h3>
+
+                <p>
+                    Applied {{ application.applied_at|date:"d M Y, h:i A" }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROFILE DETAILS -->
+
+        <div class="applicant-profile">
+
+            <div class="profile-detail">
+                <span>Course</span>
+
+                {% if application.applicant.profile.course %}
+                    <strong>
+                        {{ application.applicant.profile.course }}
+                    </strong>
+                {% else %}
+                    <strong>Not added</strong>
+                {% endif %}
+            </div>
+
+
+            <div class="profile-detail">
+                <span>Year</span>
+
+                {% if application.applicant.profile.year %}
+                    <strong>
+                        {{ application.applicant.profile.year }}
+                    </strong>
+                {% else %}
+                    <strong>Not added</strong>
+                {% endif %}
+            </div>
+
+
+            <div class="profile-detail">
+                <span>Specialization</span>
+
+                {% if application.applicant.profile.specialization %}
+                    <strong>
+                        {{ application.applicant.profile.specialization }}
+                    </strong>
+                {% else %}
+                    <strong>Not added</strong>
+                {% endif %}
+            </div>
+
+
+            <div class="profile-detail">
+                <span>Skills</span>
+
+                {% if application.applicant.profile.skills %}
+                    <strong>
+                        {{ application.applicant.profile.skills }}
+                    </strong>
+                {% else %}
+                    <strong>Not added</strong>
+                {% endif %}
+            </div>
+
+        </div>
+
+
+        <!-- ABOUT -->
+
+        {% if application.applicant.profile.bio %}
+
+        <div class="applicant-bio">
+
+            <span>About</span>
+
+            <p>
+                {{ application.applicant.profile.bio }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- STATUS -->
+
+    <div class="applicant-status">
+
+        {% if application.status == "accepted" %}
+
+            <span class="application-status accepted-status">
+                Accepted
+            </span>
+
+            {% elif application.status == "rejected" %}
+
+            <span class="application-status rejected-status">
+                Rejected
+            </span>
+
+            {% elif application.status == "left" %}
+
+            <span class="application-status left-status">
+                Left
+            </span>
+
+        {% else %}
+
+        <span class="application-status pending-status">
+            Pending
+        </span>
+
+    {% endif %}
+
+</div>
+
+
+        <!-- ACTIONS -->
+
+        {% if application.status == "pending" %}
+
+        <div class="applicant-actions">
+
+            <form
+                method="POST"
+                action="{% url 'accept_application' application.id %}"
+                style="display: inline;"
+            >
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="accept-button"
+                >
+                    ✓ Accept
+                </button>
+            </form>
+
+
+            <form
+                method="POST"
+                action="{% url 'reject_application' application.id %}"
+                style="display: inline;"
+            >
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="reject-button"
+                >
+                    ✕ Reject
+                </button>
+            </form>
+
+        </div>
+
+    {% endif %}
+
+{% if application.status == "accepted" %}
+
+    <div class="applicant-actions">
+
+        {% if application.conversation %}
+
+            <a
+                href="{% url 'chat' application.conversation.id %}"
+                class="accept-button"
+            >
+                💬 Chat
+            </a>
+
+        {% endif %}
+
+        <form
+            method="POST"
+            action="{% url 'remove_member' application.id %}"
+            style="display: inline;"
+            onsubmit="return confirm('Are you sure you want to remove this member from the team?');"
+        >
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="reject-button"
+            >
+                ✕ Remove Member
+            </button>
+        </form>
+
+    </div>
+
+{% endif %}
+
+    </div>
+
+
+    {% empty %}
+
+    <div class="empty-opportunities">
+
+        <div class="empty-icon">
+            +
+        </div>
+
+        <h3>
+            No Applicants Yet
+        </h3>
+
+        <p>
+            No students have applied for this opportunity yet.
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<br>
+
+
+<a
+    href="{% url 'opportunity_detail' opportunity.id %}"
+    class="btn-back"
+>
+    ← Back to Opportunity
+</a>
+
+{% endblock %}

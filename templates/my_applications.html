@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+
+{% block title %}My Applications{% endblock %}
+
+{% block content %}
+
+<div class="home-header">
+
+    <p class="small-heading">
+        LPU OPPORTUNITIES
+    </p>
+
+    <h1>
+        My Applications
+    </h1>
+
+    <p class="home-subtitle">
+        Track the opportunities you have applied for.
+    </p>
+
+</div>
+
+
+<div class="my-applications-grid">
+
+    {% for application in applications %}
+
+    <div class="application-card">
+
+       <!-- STATUS -->
+
+{% if application.status == "accepted" %}
+
+    <span class="application-status accepted-status">
+        Accepted
+    </span>
+
+{% elif application.status == "rejected" %}
+
+    <span class="application-status rejected-status">
+        Rejected
+    </span>
+
+{% elif application.status == "left" %}
+
+    <span class="application-status left-status">
+        Left
+    </span>
+
+{% else %}
+
+    <span class="application-status pending-status">
+        Pending
+    </span>
+
+{% endif %}
+
+
+        <!-- TITLE -->
+
+        <h2 class="opportunity-title">
+            {{ application.opportunity.title }}
+        </h2>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="opportunity-description">
+            {{ application.opportunity.description }}
+        </p>
+
+
+        <!-- APPLICATION INFO -->
+
+        <div class="application-info">
+
+            <div class="application-info-box">
+
+                <span class="application-info-label">
+                    Applied On
+                </span>
+
+                <span class="application-info-value">
+                    {{ application.applied_at|date:"d M Y" }}
+                </span>
+
+            </div>
+
+
+            <div class="application-info-box">
+
+                <span class="application-info-label">
+                    Status
+                </span>
+
+                <span class="application-info-value">
+                    {{ application.get_status_display }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <!-- BUTTONS -->
+
+        <div class="application-buttons">
+
+            {% if application.status == "accepted" and application.conversation %}
+
+                <div class="application-top-buttons">
+
+                    <form
+                        method="POST"
+                        action="{% url 'leave_team' application.id %}"
+                        onsubmit="return confirm('Are you sure you want to leave this team?');"
+                    >
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="reject-button"
+                        >
+                            ✕ Leave Team
+                        </button>
+
+                    </form>
+
+                    <a
+                        href="{% url 'chat' application.conversation.id %}"
+                        class="application-chat-button"
+                    >
+                        <span>💬 Chat</span>
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+            <a
+                href="{% url 'opportunity_detail' application.opportunity.id %}"
+                class="application-view-button"
+            >
+                <span>View Opportunity</span>
+                <span>→</span>
+            </a>
+
+        </div>
+
+    </div>
+
+
+    {% empty %}
+
+    <div class="empty-opportunities">
+
+        <div class="empty-icon">
+            +
+        </div>
+
+        <h3>
+            No Applications Yet
+        </h3>
+
+        <p>
+            You haven't applied to any opportunities yet.
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+<br>
+
+
+<a href="{% url 'home' %}" class="btn-back">
+    ← Back to Home
+</a>
+
+{% endblock %}

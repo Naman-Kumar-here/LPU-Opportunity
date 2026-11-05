@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ opportunity.title }}
+{% endblock %}
+
+{% block content %}
+
+<div class="opportunity-detail">
+
+    <!-- Heading -->
+    <p class="detail-label">
+        LPU OPPORTUNITY
+    </p>
+
+    <h1 class="detail-title">
+        {{ opportunity.title }}
+    </h1>
+
+    <p class="detail-description">
+        {{ opportunity.description }}
+    </p>
+
+
+    <!-- Statistics -->
+    <div class="detail-stats">
+
+        <div class="detail-stat">
+            <strong>{{ opportunity.students_needed }}</strong>
+            <span>Students Needed</span>
+        </div>
+
+        <div class="detail-stat">
+            <strong>{{ accepted_count }}</strong>
+            <span>Accepted</span>
+        </div>
+
+        <div class="detail-stat">
+            <strong>{{ available_seats }}</strong>
+            <span>Seats Left</span>
+        </div>
+
+    </div>
+
+
+    <!-- Information -->
+    <div class="detail-info">
+
+        <div>
+            <span>Posted By</span>
+            <strong>{{ opportunity.posted_by.username }}</strong>
+        </div>
+
+        <div>
+            <span>Created At</span>
+            <strong>{{ opportunity.created_at }}</strong>
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="detail-actions">
+
+        <a href="{% url 'home' %}" class="btn-back">
+            ← Back to Home
+        </a>
+
+
+        {% if request.user != opportunity.posted_by %}
+
+            {% if available_seats > 0 %}
+
+            <form
+                method="POST"
+                action="{% url 'apply_opportunity' opportunity.id %}"
+                style="display: inline;"
+            >
+                {% csrf_token %}
+
+                <button
+                    type="submit"
+                    class="btn-apply"
+                >
+                    Apply Now
+                </button>
+            </form>
+
+            {% else %}
+
+                <span class="btn-full">
+                    Opportunity Full
+                </span>
+
+            {% endif %}
+
+        {% else %}
+
+            <a
+                href="{% url 'opportunity_applications' opportunity.id %}"
+                class="btn-apply"
+            >
+                View Applications
+            </a>
+
+            <a
+                href="{% url 'edit_opportunity' opportunity.id %}"
+                class="btn-apply"
+            >
+                Edit Opportunity
+            </a>
+
+            <a
+                href="{% url 'delete_opportunity' opportunity.id %}"
+                class="delete-button"
+            >
+                Delete Opportunity
+            </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

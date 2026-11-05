@@ -1,0 +1,629 @@
+{% extends "base.html" %}
+
+{% block title %}Chat{% endblock %}
+
+{% block content %}
+
+<style>
+
+    .chat-container {
+        max-width: 800px;
+        margin: 30px auto;
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .chat-header {
+        padding: 20px;
+        background: #111827;
+        color: white;
+    }
+
+    .chat-header h2 {
+        margin: 0;
+        font-size: 20px;
+        color: white;
+    }
+
+    .chat-header p {
+        margin: 5px 0 0;
+        color: #d1d5db;
+        font-size: 14px;
+    }
+
+    .messages {
+        padding: 20px;
+        min-height: 400px;
+        max-height: 550px;
+        overflow-y: auto;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        display: flex;
+    }
+
+    .message.sent {
+        justify-content: flex-end;
+    }
+
+    .message.received {
+        justify-content: flex-start;
+    }
+
+    .message-box {
+        max-width: 70%;
+        padding: 10px 14px;
+        border-radius: 12px;
+        word-wrap: break-word;
+    }
+
+    .sent .message-box {
+        background: #2563eb;
+        color: white;
+        border-bottom-right-radius: 4px;
+    }
+
+    .received .message-box {
+        background: #e5e7eb;
+        color: #111827;
+        border-bottom-left-radius: 4px;
+    }
+
+    .sender {
+        font-size: 12px;
+        margin-bottom: 4px;
+        opacity: 0.7;
+    }
+
+    .time {
+        font-size: 10px;
+        margin-top: 5px;
+        opacity: 0.6;
+    }
+
+    .empty-chat {
+        text-align: center;
+        color: #6b7280;
+        padding: 100px 20px;
+    }
+
+    .message-form {
+        display: flex;
+        gap: 10px;
+        padding: 15px 20px;
+        border-top: 1px solid #e5e7eb;
+        background: white;
+    }
+
+    .message-form input {
+        flex: 1;
+        padding: 12px 15px;
+        border: 1px solid #d1d5db;
+        border-radius: 10px;
+        outline: none;
+        font-size: 14px;
+    }
+
+    .message-form input:focus {
+        border-color: #2563eb;
+    }
+
+    .message-form button {
+        border: none;
+        padding: 12px 20px;
+        border-radius: 10px;
+        background: #2563eb;
+        color: white;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .message-form button:hover {
+        opacity: 0.9;
+    }
+
+    .message-form button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+
+        .chat-container {
+            margin: 15px 0;
+            border-radius: 10px;
+        }
+
+        .messages {
+            min-height: 350px;
+            max-height: 500px;
+            padding: 15px;
+        }
+
+        .message-box {
+            max-width: 80%;
+        }
+
+        .message-form {
+            padding: 12px;
+        }
+
+        .message-form input {
+            min-width: 0;
+        }
+
+        .message-form button {
+            padding: 12px 15px;
+        }
+
+    }
+
+</style>
+
+
+<div class="chat-container">
+
+    <!-- CHAT HEADER -->
+
+    <div class="chat-header">
+
+        <h2>
+            {{ conversation.opportunity.title }}
+        </h2>
+
+        <p>
+            {{ conversation.creator.username }}
+            ↔
+            {{ conversation.applicant.username }}
+        </p>
+
+    </div>
+
+
+    <!-- MESSAGES -->
+
+    <div class="messages">
+
+        {% if chat_messages %}
+
+            {% for message in chat_messages %}
+
+                <div
+                    class="
+                        message
+                        {% if message.sender == request.user %}
+                            sent
+                        {% else %}
+                            received
+                        {% endif %}
+                    "
+                    data-message-id="{{ message.id }}"
+                >
+
+                    <div class="message-box">
+
+                        <div class="sender">
+                            {{ message.sender.username }}
+                        </div>
+
+                        <div>
+                            {{ message.content }}
+                        </div>
+
+                        <div class="time">
+                            {{ message.created_at|date:"d M, h:i A" }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-chat">
+                No messages yet.<br>
+                Start the conversation!
+            </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- SEND MESSAGE -->
+
+    <form method="POST" class="message-form" id="message-form">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="content"
+            id="message-input"
+            placeholder="Type a message..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit" id="send-button">
+            Send
+        </button>
+
+    </form>
+
+</div>
+
+
+<script>
+
+    window.addEventListener("load", function () {
+
+        const messagesContainer =
+            document.querySelector(".messages");
+
+        const messageForm =
+            document.getElementById("message-form");
+
+        const messageInput =
+            document.getElementById("message-input");
+
+        const sendButton =
+            document.getElementById("send-button");
+
+
+        let lastMessageId = 0;
+
+
+        // Get latest message ID currently visible
+        const existingMessages =
+            messagesContainer.querySelectorAll(".message");
+
+        if (existingMessages.length > 0) {
+
+            const lastMessage =
+                existingMessages[
+                    existingMessages.length - 1
+                ];
+
+            lastMessageId =
+                parseInt(
+                    lastMessage.dataset.messageId
+                ) || 0;
+
+        }
+
+
+        // Scroll chat to bottom
+        function scrollToBottom() {
+
+            messagesContainer.scrollTop =
+                messagesContainer.scrollHeight;
+
+        }
+
+
+        // Create a message bubble
+        function addMessage(message) {
+
+            // Remove empty chat message
+            const emptyChat =
+                messagesContainer.querySelector(".empty-chat");
+
+            if (emptyChat) {
+                emptyChat.remove();
+            }
+
+
+            const messageDiv =
+                document.createElement("div");
+
+            messageDiv.className =
+                "message " +
+                (message.is_sender
+                    ? "sent"
+                    : "received");
+
+            messageDiv.dataset.messageId =
+                message.id;
+
+
+            const messageBox =
+                document.createElement("div");
+
+            messageBox.className =
+                "message-box";
+
+
+            const sender =
+                document.createElement("div");
+
+            sender.className =
+                "sender";
+
+            sender.textContent =
+                message.sender;
+
+
+            const content =
+                document.createElement("div");
+
+            content.textContent =
+                message.content;
+
+
+            const time =
+                document.createElement("div");
+
+            time.className =
+                "time";
+
+            time.textContent =
+                message.created_at;
+
+
+            messageBox.appendChild(sender);
+
+            messageBox.appendChild(content);
+
+            messageBox.appendChild(time);
+
+            messageDiv.appendChild(messageBox);
+
+            messagesContainer.appendChild(
+                messageDiv
+            );
+
+        }
+
+
+        // Load new messages
+        function loadMessages() {
+
+            fetch(
+                "{% url 'chat_messages' conversation.id %}"
+            )
+
+                .then(function (response) {
+
+                    return response.json();
+
+                })
+
+                .then(function (data) {
+
+                    if (data.error) {
+                        return;
+                    }
+
+
+                    const messages =
+                        data.messages;
+
+
+                    // Check if new messages arrived
+                    if (
+                        messages.length > 0 &&
+                        messages[messages.length - 1].id >
+                        lastMessageId
+                    ) {
+
+                        messagesContainer.innerHTML = "";
+
+
+                        messages.forEach(function (message) {
+
+                            addMessage(message);
+
+                        });
+
+
+                        lastMessageId =
+                            messages[
+                                messages.length - 1
+                            ].id;
+
+
+                        scrollToBottom();
+
+                    }
+
+
+                    // Update navbar unread badge
+                    updateMessageBadge(
+                        data.unread_count
+                    );
+
+                })
+
+                .catch(function (error) {
+
+                    console.log(
+                        "Message loading error:",
+                        error
+                    );
+
+                });
+
+        }
+
+
+        // Update Messages navbar badge
+        function updateMessageBadge(count) {
+
+            const messageLink =
+                document.querySelector(".message-link");
+
+            if (!messageLink) {
+                return;
+            }
+
+
+            let badge =
+                messageLink.querySelector(
+                    ".message-unread-badge"
+                );
+
+
+            if (count > 0) {
+
+                if (!badge) {
+
+                    badge =
+                        document.createElement("span");
+
+                    badge.className =
+                        "message-unread-badge";
+
+                    messageLink.appendChild(
+                        badge
+                    );
+
+                }
+
+                badge.textContent =
+                    count;
+
+            } else {
+
+                if (badge) {
+                    badge.remove();
+                }
+
+            }
+
+        }
+
+
+        // AJAX SEND MESSAGE
+        messageForm.addEventListener(
+            "submit",
+            function (event) {
+
+                // Stop page reload
+                event.preventDefault();
+
+
+                const content =
+                    messageInput.value.trim();
+
+
+                // Don't send empty message
+                if (!content) {
+                    return;
+                }
+
+
+                // Disable button while sending
+                sendButton.disabled = true;
+
+                sendButton.style.cursor =
+                    "not-allowed";
+
+
+                fetch(
+                    "{% url 'chat' conversation.id %}",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "X-CSRFToken":
+                                document.querySelector(
+                                    "[name=csrfmiddlewaretoken]"
+                                ).value,
+
+                            "X-Requested-With":
+                                "XMLHttpRequest",
+
+                            "Content-Type":
+                                "application/x-www-form-urlencoded"
+
+                        },
+
+                        body:
+                            new URLSearchParams({
+                                "content": content
+                            })
+
+                    }
+                )
+
+                .then(function (response) {
+
+                    return response.json();
+
+                })
+
+                .then(function (data) {
+
+                    // Add sent message immediately
+                    addMessage(data);
+
+
+                    // Update latest message ID
+                    lastMessageId =
+                        data.id;
+
+
+                    // Clear input
+                    messageInput.value = "";
+
+
+                    // Scroll to bottom
+                    scrollToBottom();
+
+
+                    // Focus input again
+                    messageInput.focus();
+
+                })
+
+                .catch(function (error) {
+
+                    console.log(
+                        "Message sending error:",
+                        error
+                    );
+
+                })
+
+                .finally(function () {
+
+                    // Enable button again
+                    sendButton.disabled =
+                        false;
+
+                    sendButton.style.cursor =
+                        "pointer";
+
+                });
+
+            }
+        );
+
+
+        // Check for new messages every 2 seconds
+        setInterval(
+            loadMessages,
+            2000
+        );
+
+
+        // Initial scroll
+        scrollToBottom();
+
+
+        // Focus input
+        messageInput.focus();
+
+    });
+
+</script>
+
+{% endblock %}

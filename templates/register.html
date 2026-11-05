@@ -1,0 +1,170 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register</title>
+
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+
+<body>
+
+    <div class="login-page">
+
+        <div class="login-card">
+
+            {% if messages %}
+                {% for message in messages %}
+
+                    {% if message.tags == "success" %}
+                        <div class="login-success">
+                            {{ message }}
+                        </div>
+                    {% else %}
+                        <div class="login-error">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+            {% endif %}
+
+
+            <p class="small-heading">
+                LPU OPPORTUNITIES
+            </p>
+
+            <h1>Create Account</h1>
+
+            <p class="login-subtitle">
+                Create your account to explore opportunities.
+            </p>
+
+
+            <form method="POST" onsubmit="disableRegisterButton()">
+
+                {% csrf_token %}
+
+
+                <div class="login-field">
+
+                    <label>Username</label>
+
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Choose a username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-field">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-field">
+
+                    <label>Student ID</label>
+
+                    <input
+                        type="text"
+                        name="student_id"
+                        placeholder="Enter your student ID"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-field">
+
+                    <label>Phone Number</label>
+
+                    <input
+                        type="tel"
+                        name="phone_number"
+                        placeholder="Enter your phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="login-field">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="register-button"
+                >
+
+                    <span>Create Account</span>
+
+                    <span>→</span>
+
+                </button>
+
+            </form>
+
+
+            <p class="register-text">
+
+                Already have an account?
+
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function disableRegisterButton() {
+
+            const button = document.getElementById("register-button");
+
+            button.disabled = true;
+
+            button.style.cursor = "not-allowed";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

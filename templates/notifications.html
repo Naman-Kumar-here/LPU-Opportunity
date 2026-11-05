@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Notifications{% endblock %}
+
+{% block content %}
+
+<div class="notification-page">
+
+    <div class="notification-header">
+
+        <div>
+            <p class="small-heading">LPU OPPORTUNITIES</p>
+            
+            <h1>Notifications</h1>
+
+            <p class="login-subtitle">
+                Stay updated with your latest activities.
+            </p>
+        </div>
+
+        {% if unread_count > 0 %}
+        <form method="POST" action="{% url 'mark_all_notifications_read' %}">
+            {% csrf_token %}
+
+            <button type="submit" class="mark-read-button">
+                Mark all as read
+            </button>
+        </form>
+        {% endif %}
+
+    </div>
+
+
+    <div class="notifications-list">
+
+        {% if notifications %}
+
+            {% for notification in notifications %}
+
+            <a href="{% url 'open_notification' notification.id %}"
+            class="notification-card {% if not notification.is_read %}unread{% endif %}"
+            >
+
+                <div class="notification-icon">
+                    🔔
+                </div>
+
+                <div class="notification-content">
+
+                    <h5>
+                        {{ notification.message }}
+                    </h5>
+
+                    <p>
+                        {{ notification.created_at|timesince }} ago
+                    </p>
+
+                </div>
+
+                {% if not notification.is_read %}
+                    <span class="unread-dot"></span>
+                {% endif %}
+
+            </a>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="no-notifications">
+
+                <div class="empty-icon">
+                    🔔
+                </div>
+
+                <h3>No notifications yet</h3>
+
+                <p>
+                    You're all caught up!
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

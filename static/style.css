@@ -1,0 +1,3344 @@
+/* ==============================
+   LPU OPPORTUNITIES THEME
+   ============================== */
+
+body {
+    background: #fffdf8;
+    color: #292929;
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.opportunity-navbar {
+
+    background: #ffffff;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid #eeeeee;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.navbar-brand {
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    color: #292929 !important;
+
+    white-space: nowrap;
+
+    margin-right: 20px;
+
+}
+
+
+.navbar-nav {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    flex-wrap: nowrap;
+
+}
+
+
+.nav-link {
+
+    color: #555555 !important;
+
+    font-weight: 500;
+
+    font-size: 16px;
+
+    margin-left: 14px;
+
+    padding: 8px 4px !important;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+
+}
+
+
+.nav-link:hover {
+
+    color: #ff766f !important;
+
+}
+
+
+.logout-link {
+
+    color: #ff625d !important;
+
+}
+
+
+/* ---------- ACCOUNT ---------- */
+
+.account-button {
+
+    border: none;
+
+    background: transparent;
+
+    white-space: nowrap;
+
+}
+
+
+/* ---------- MOBILE ICON ---------- */
+
+.mobile-nav-icon {
+
+    display: none;
+
+}
+
+/* ---------- HEADINGS ---------- */
+
+h1,
+h2,
+h3 {
+    color: #292929;
+}
+
+
+/* ---------- ALERT ---------- */
+
+.custom-alert {
+    background: #fff1df;
+    border: 1px solid #ffd19c;
+    color: #5c4630;
+    border-radius: 12px;
+}
+
+
+/* ---------- BUTTON ---------- */
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff7770, #ffca72);
+    border: none;
+    color: #292929;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px 18px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #ff6861, #ffc263);
+    color: #292929;
+}
+
+
+/* =================================
+   HOME PAGE
+   ================================= */
+
+.home-header {
+    margin-bottom: 40px;
+}
+
+.small-heading {
+    color: #ff766f;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+.home-header h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.home-subtitle {
+    color: #777777;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+
+/* =================================
+   OPPORTUNITY CARD
+   ================================= */
+
+.opportunity-card {
+    background: #fffaf0;
+    border: 1px solid #eee4d2;
+    border-radius: 20px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+
+    transition: transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+.opportunity-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 7px;
+
+    background: linear-gradient(
+        90deg,
+        #ff746d,
+        #ff9c7a,
+        #ffd36f
+    );
+}
+
+.opportunity-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.11);
+}
+
+
+/* =================================
+   CARD TOP
+   ================================= */
+
+.opportunity-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.opportunity-badge {
+    background: #ffe4bd;
+    color: #694d35;
+
+    padding: 6px 12px;
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.opportunity-icon {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffd06f
+    );
+
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+
+/* =================================
+   TITLE
+   ================================= */
+
+.opportunity-title {
+    font-size: 27px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
+
+    word-break: break-word;
+
+    min-height: 65px;
+    max-height: 72px;
+    overflow: hidden;
+}
+
+.opportunity-description {
+    color: #666666;
+    font-size: 15px;
+
+    min-height: 72px;
+    max-height: 72px;
+    overflow: hidden;
+
+    margin-bottom: 22px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* =================================
+   STATISTICS
+   ================================= */
+
+.opportunity-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #ffffff;
+
+    border: 1px solid #eee5d5;
+    border-radius: 12px;
+
+    padding: 12px 7px;
+
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    color: #ff746d;
+}
+
+.stat-number.accepted {
+    color: #e89042;
+}
+
+.stat-number.available {
+    color: #5c9b68;
+}
+
+.stat-label {
+    display: block;
+
+    color: #777777;
+
+    font-size: 11px;
+    margin-top: 3px;
+}
+
+
+/* =================================
+   POSTED BY
+   ================================= */
+
+.posted-by {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 12px 0;
+
+    border-top: 1px solid #eee5d5;
+    border-bottom: 1px solid #eee5d5;
+
+    margin-bottom: 18px;
+
+    font-size: 14px;
+}
+
+.posted-by span {
+    color: #888888;
+}
+
+.posted-by strong {
+    color: #333333;
+}
+
+
+/* =================================
+   VIEW BUTTON
+   ================================= */
+
+.opportunity-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 17px;
+
+    border-radius: 11px;
+
+    text-decoration: none;
+
+    color: #292929;
+
+    font-weight: 600;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffcb72
+    );
+
+    transition: 0.2s ease;
+}
+
+.opportunity-button:hover {
+    color: #292929;
+
+    transform: translateX(2px);
+
+    background: linear-gradient(
+        135deg,
+        #ff6962,
+        #ffc365
+    );
+}
+
+.opportunity-button span {
+    font-size: 21px;
+}
+
+
+/* =================================
+   EMPTY STATE
+   ================================= */
+
+.empty-opportunities {
+    text-align: center;
+
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+
+    border-radius: 20px;
+
+    padding: 60px 20px;
+}
+
+.empty-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffd06f
+    );
+
+    font-size: 28px;
+}
+
+.empty-opportunities h3 {
+    font-weight: 700;
+}
+
+.empty-opportunities p {
+    color: #777777;
+}
+
+/* ---------- MESSAGE BADGE ---------- */
+
+.message-link {
+    position: relative;
+}
+
+.message-unread-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 18px;
+    height: 18px;
+
+    padding: 0 5px;
+
+    border-radius: 50px;
+
+    background: #ff625d;
+    color: #ffffff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+/* =================================
+   MOBILE
+   ================================= */
+
+@media (max-width: 768px) {
+
+    .home-header h1 {
+        font-size: 34px;
+    }
+
+    .home-subtitle {
+        font-size: 15px;
+    }
+
+    .opportunity-card {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .message-link {
+        position: relative;
+    }
+
+    .message-unread-badge {
+        position: absolute;
+
+        top: 2px;
+        right: 7px;
+
+        min-width: 15px;
+        height: 15px;
+
+        padding: 0 4px;
+
+        font-size: 9px;
+    }
+
+}
+
+/* SPECIAL NAV BAR FOR THE MOBILE */
+
+/* =================================
+   MOBILE BOTTOM NAVBAR
+================================= */
+
+.mobile-nav-icon {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .opportunity-navbar {
+        position: fixed;
+
+        bottom: 12px;
+        left: 50%;
+
+        transform: translateX(-50%);
+
+        width: 94%;
+
+        padding: 7px 4px;
+
+        border: 1px solid #eee4d2;
+        border-radius: 18px;
+
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+        z-index: 1000;
+    }
+
+
+    /* Hide brand on phone */
+
+    .opportunity-navbar .navbar-brand {
+        display: none;
+    }
+
+
+    /* Full width navigation */
+
+    .opportunity-navbar .container {
+        width: 100%;
+        padding: 0;
+    }
+
+
+    /* Navigation items */
+
+    .opportunity-navbar .navbar-nav {
+        width: 100%;
+
+        display: flex;
+        flex-direction: row;
+
+        justify-content: space-between;
+        align-items: center;
+
+        margin: 0 !important;
+
+        flex-wrap: nowrap;
+    }
+
+
+    /* Normal navigation links */
+
+    .opportunity-navbar .nav-link {
+        flex: 1 1 0;
+
+        min-width: 0;
+
+        display: flex;
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        gap: 3px;
+
+        margin: 0;
+
+        padding: 7px 0 !important;
+
+        border-radius: 12px;
+
+        font-size: 8px;
+
+        line-height: 1.1;
+
+        white-space: nowrap;
+
+        text-align: center;
+    }
+
+
+    /* Account dropdown gets equal space */
+
+    .opportunity-navbar .navbar-nav > .dropdown {
+        flex: 1 1 0;
+
+        min-width: 0;
+
+        display: flex;
+
+        justify-content: center;
+    }
+
+
+    /* Account button */
+
+    .opportunity-navbar .account-button {
+        width: 100%;
+
+        margin: 0;
+
+        padding: 7px 0 !important;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 3px;
+
+        font-size: 8px;
+
+        line-height: 1.1;
+
+        white-space: nowrap;
+    }
+
+
+    /* Icons */
+
+    .mobile-nav-icon {
+        display: block;
+
+        font-size: 19px;
+
+        line-height: 1;
+
+        color: #555;
+    }
+
+
+    /* Hover / tap */
+
+    .opportunity-navbar .nav-link:hover {
+        background: #fff4e8;
+
+        color: #ff766f !important;
+    }
+
+
+    .opportunity-navbar .nav-link:hover .mobile-nav-icon {
+        color: #ff766f;
+    }
+
+
+    /* Logout */
+
+    .opportunity-navbar .logout-link,
+    .opportunity-navbar .logout-link .mobile-nav-icon {
+        color: #ff625d !important;
+    }
+
+
+    /* Content space */
+
+    main {
+        padding-bottom: 100px !important;
+    }
+
+}
+
+
+/* ================================
+   OPPORTUNITY DETAIL PAGE
+================================ */
+
+.opportunity-detail {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fffaf0;
+    border-radius: 24px;
+    padding: 45px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-top: 7px solid #ff8a7a;
+}
+
+.detail-label {
+    color: #ff6f61;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.detail-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 15px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.detail-description {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 35px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+
+/* Stats */
+
+.detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.detail-stat {
+    background: white;
+    border: 1px solid #eee1cf;
+    border-radius: 16px;
+    padding: 22px;
+    text-align: center;
+}
+
+.detail-stat strong {
+    display: block;
+    font-size: 30px;
+    color: #ff7165;
+    margin-bottom: 5px;
+}
+
+.detail-stat span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* Information */
+
+.detail-info {
+    border-top: 1px solid #eadfce;
+    border-bottom: 1px solid #eadfce;
+    margin-bottom: 30px;
+}
+
+.detail-info div {
+    display: flex;
+    justify-content: space-between;
+    padding: 17px 0;
+    border-bottom: 1px solid #eadfce;
+}
+
+.detail-info div:last-child {
+    border-bottom: none;
+}
+
+.detail-info span {
+    color: #777;
+}
+
+.detail-info strong {
+    color: #222;
+}
+
+
+/* Buttons */
+
+.detail-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-apply {
+    display: inline-block;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff8177, #ffd166);
+    transition: 0.2s ease;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-apply:hover {
+    transform: translateY(-2px);
+    color: #222;
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #555;
+    background: #fff;
+    border: 1px solid #ddd;
+}
+
+.btn-back:hover {
+    color: #222;
+}
+
+.btn-full {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 12px;
+    background: #eee;
+    color: #777;
+    font-weight: 600;
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+    .opportunity-detail {
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .detail-title {
+        font-size: 32px;
+    }
+
+    .detail-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-info div {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .detail-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn-apply,
+    .btn-back,
+    .btn-full {
+        text-align: center;
+    }
+}
+
+/* =================================
+   CREATE OPPORTUNITY PAGE
+================================= */
+
+.create-opportunity {
+    max-width: 800px;
+    margin: 30px auto;
+    background: #fffaf0;
+    border: 1px solid #eee4d2;
+    border-radius: 24px;
+    padding: 45px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ---------- HEADER ---------- */
+
+.create-header {
+    margin-bottom: 35px;
+}
+
+.create-header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.create-header p:last-child {
+    color: #777;
+    font-size: 16px;
+}
+
+
+/* ---------- FORM ---------- */
+
+.opportunity-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 13px 15px;
+
+    border: 1px solid #e4dac9;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #292929;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #ff8878;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 119, 112, 0.12);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+
+/* ---------- ACTIONS ---------- */
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 10px;
+    padding-top: 25px;
+
+    border-top: 1px solid #eadfce;
+}
+
+.form-actions .btn-apply {
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .create-opportunity {
+        padding: 25px;
+        margin: 20px auto;
+    }
+
+    .create-header h1 {
+        font-size: 32px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    .form-actions .btn-apply,
+    .form-actions .btn-back {
+        text-align: center;
+    }
+}
+
+/* =================================
+   SUCCESS / ERROR MESSAGES
+================================= */
+
+.alert {
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-weight: 500;
+}
+
+
+/* SUCCESS MESSAGE */
+
+.alert-success {
+    background: #e9f8ee;
+    border: 1px solid #a8dfb9;
+    color: #267342;
+}
+
+
+/* ERROR MESSAGE */
+
+.alert-danger {
+    background: #fff0ee;
+    border: 1px solid #ffaaa2;
+    color: #b83b32;
+}
+
+
+/* =================================
+   MY OPPORTUNITIES
+================================= */
+
+.my-opportunities-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+
+/* =================================
+   ACTION BUTTONS
+================================= */
+
+.my-opportunity-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.my-opportunity-actions a {
+    flex: 1;
+    min-width: 0;
+    min-height: 78px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+    text-decoration: none;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+
+/* =================================
+   VIEW OPPORTUNITY
+================================= */
+
+.view-opportunity-btn {
+    flex-direction: column;
+    gap: 1px;
+
+    background: #ffffff;
+    color: #292929;
+
+    border: 1px solid #ddd;
+}
+
+.view-opportunity-btn:hover {
+    color: #292929;
+    transform: translateY(-2px);
+}
+
+
+/* =================================
+   VIEW APPLICATIONS
+================================= */
+
+.applications-button {
+    flex-direction: row;
+
+    padding: 12px 14px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffcb72
+    );
+
+    color: #292929;
+}
+
+.applications-button:hover {
+    color: #292929;
+    transform: translateY(-2px);
+}
+
+
+/* Text */
+
+.applications-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+
+/* Arrow */
+
+.applications-arrow {
+    font-size: 20px;
+    margin-left: 8px;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 1000px) {
+
+    .my-opportunities-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    .my-opportunities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .my-opportunity-actions {
+        flex-direction: column;
+    }
+
+}
+
+/* =================================
+   MY APPLICATIONS
+================================= */
+
+.my-applications-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+
+/* =================================
+   APPLICATION CARD
+================================= */
+
+.application-card {
+    background: #fffaf0;
+    border: 1px solid #eadfce;
+    border-radius: 22px;
+
+    padding: 30px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+
+    position: relative;
+    overflow: hidden;
+}
+
+.application-card::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 10px;
+
+    background: linear-gradient(
+        90deg,
+        #ff7770,
+        #ffcb72
+    );
+}
+
+
+/* =================================
+   TOP
+================================= */
+
+.application-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+
+/* =================================
+   STATUS
+================================= */
+
+.application-status {
+    padding: 8px 13px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.accepted-status {
+    background: #dff5df;
+    color: #3d9143;
+}
+
+.rejected-status {
+    background: #ffe1df;
+    color: #d94b45;
+}
+
+.pending-status {
+    background: #fff0d2;
+    color: #c47b24;
+}
+
+
+/* =================================
+   APPLICATION INFO
+================================= */
+
+.application-info {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 25px;
+    margin-bottom: 18px;
+}
+
+.application-info-box {
+    flex: 1;
+
+    padding: 14px 10px;
+
+    background: #ffffff;
+
+    border: 1px solid #eadfce;
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.application-info-label {
+    display: block;
+
+    font-size: 13px;
+    color: #777;
+
+    margin-bottom: 5px;
+}
+
+.application-info-value {
+    display: block;
+
+    font-size: 14px;
+    font-weight: 600;
+    color: #292929;
+}
+
+
+/* =================================
+   VIEW BUTTON
+================================= */
+
+.application-view-button {
+    width: 100%;
+
+    min-height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    padding: 12px 16px;
+
+    box-sizing: border-box;
+
+    border-radius: 13px;
+
+    text-decoration: none;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffcb72
+    );
+
+    color: #292929;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.application-view-button span:last-child {
+    font-size: 20px;
+    margin-left: 8px;
+}
+
+.application-view-button:hover {
+    color: #292929;
+    transform: translateY(-2px);
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 1000px) {
+
+    .my-applications-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    .my-applications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .application-info {
+        flex-direction: column;
+    }
+
+}
+
+/* =================================
+   OPPORTUNITY APPLICATIONS
+================================= */
+
+.applications-summary {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 15px;
+
+    margin-bottom: 35px;
+}
+
+.applications-summary > div {
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+    border-radius: 16px;
+
+    padding: 18px;
+
+    min-width: 0;
+}
+
+.applications-summary span {
+    display: block;
+
+    color: #777;
+    font-size: 13px;
+
+    margin-bottom: 6px;
+}
+
+.applications-summary strong {
+    display: block;
+
+    color: #292929;
+    font-size: 18px;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.accepted-number {
+    color: #5c9b68 !important;
+}
+
+.available-number {
+    color: #e89042 !important;
+}
+
+
+/* =================================
+   APPLICANTS SECTION
+================================= */
+
+.applications-section {
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+    border-radius: 22px;
+
+    padding: 28px;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.applications-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eadfce;
+}
+
+.applications-section-header h2 {
+    margin: 0;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.applications-section-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+
+/* =================================
+   VIEW APPLICANT PAGE
+================================= */
+
+.application-opportunity-link {
+    display: block;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    min-width: 0;
+}
+
+.application-opportunity-link strong {
+    color: #292929;
+
+    overflow-wrap: anywhere;
+    word-break: break-word;
+
+    transition: color 0.2s ease;
+}
+
+.application-opportunity-link small {
+    display: block;
+
+    margin-top: 10px;
+
+    color: #777;
+    font-size: 13px;
+}
+
+.application-opportunity-link:hover strong {
+    color: #ff746d;
+}
+
+
+/* =================================
+   APPLICANT CARD
+================================= */
+
+.applicant-card {
+    display: grid;
+
+    grid-template-columns:
+        minmax(180px, 1fr)
+        minmax(220px, 1.2fr)
+        minmax(220px, 1.2fr)
+        auto
+        auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 25px 5px;
+
+    border-bottom: 1px solid #eee4d2;
+}
+
+.applicant-card:last-child {
+    border-bottom: none;
+}
+
+
+
+.applicant-info {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    min-width: 0;
+}
+
+.applicant-avatar {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffcb72
+    );
+
+    color: #292929;
+
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.applicant-info h3 {
+    margin: 0 0 4px;
+
+    font-size: 17px;
+}
+
+.applicant-info p {
+    margin: 0;
+
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* =================================
+   STATUS
+================================= */
+
+.applicant-status {
+    min-width: 90px;
+    text-align: center;
+}
+
+
+/* =================================
+   APPLICANT ACTIONS
+================================= */
+
+.applicant-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+
+    margin-top: 5px;
+
+    flex-wrap: wrap;
+}
+
+.accept-button,
+.reject-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    font-family: inherit;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.accept-button {
+    background: #e1f6e5;
+    color: #3f914c;
+}
+
+.accept-button:hover {
+    background: #ccefd2;
+    color: #347b40;
+}
+
+.reject-button {
+    background: #ffe1df;
+    color: #d9534f;
+}
+
+.reject-button:hover {
+    background: #ffd0cd;
+    color: #c74440;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 900px) {
+
+    .applications-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .applications-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .applications-section {
+        padding: 20px;
+    }
+
+    .applicant-card {
+        flex-wrap: wrap;
+    }
+
+    .applicant-info {
+        width: 100%;
+    }
+
+    .applicant-status {
+        text-align: left;
+    }
+
+    .applicant-actions {
+        width: 100%;
+    }
+
+    .accept-button,
+    .reject-button {
+        flex: 1;
+        text-align: center;
+    }
+
+}
+
+.empty-icon {
+    color: #ffffff;
+}
+
+
+/* =================================
+   LOGIN PAGE
+================================= */
+
+.login-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+    box-sizing: border-box;
+
+    background-image:
+        linear-gradient(
+            rgba(255, 250, 240, 0.35),
+            rgba(255, 250, 240, 0.35)
+        ),
+        url("/static/login_bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.login-card {
+    width: 100%;
+    max-width: 460px;
+
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+    border-radius: 22px;
+
+    padding: 40px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ---------- HEADING ---------- */
+
+.login-card h1 {
+    font-size: 42px;
+    font-weight: 700;
+
+    margin: 0 0 10px;
+}
+
+
+.login-subtitle {
+    color: #777777;
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+/* ---------- INPUT ---------- */
+
+.login-field {
+    margin-bottom: 20px;
+}
+
+
+.login-field label {
+    display: block;
+
+    color: #444444;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 7px;
+}
+
+
+.login-field input {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ddd5c7;
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+
+.login-field input:focus {
+    border-color: #ff9a78;
+
+    box-shadow: 0 0 0 3px rgba(255, 154, 120, 0.15);
+}
+
+
+/* ---------- LOGIN BUTTON ---------- */
+
+.login-button {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 18px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7770,
+        #ffcb72
+    );
+
+    color: #292929;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.login-button:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(
+        135deg,
+        #ff6962,
+        #ffc365
+    );
+}
+
+
+.login-button span:last-child {
+    font-size: 22px;
+}
+
+
+/* ---------- REGISTER ---------- */
+
+.register-text {
+    text-align: center;
+
+    color: #777777;
+
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+
+.register-text a {
+    color: #ff766f;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+.register-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .login-page {
+        padding: 20px 15px;
+    }
+
+    .login-card {
+        padding: 30px 22px;
+    }
+
+    .login-card h1 {
+        font-size: 34px;
+    }
+
+}
+
+/* ---------- LOGIN ERROR ---------- */
+
+.login-error {
+    background: #fff1f0;
+    color: #d9534f;
+
+    border: 1px solid #ffc9c5;
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+}
+
+/* ---------- LOGIN SUCCESS ---------- */
+
+.login-success {
+    background: #eef9f0;
+    color: #3f7d4a;
+
+    border: 1px solid #bfe3c4;
+    border-radius: 10px;
+
+    padding: 10px 13px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+}
+
+.forgot-password {
+    display: block;
+
+    margin-top: 8px;
+
+    text-align: right;
+
+    color: #ff766f;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.notification-link {
+    position: relative;
+}
+
+.notification-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 24px;
+    height: 22px;
+    padding: 0 6px;
+
+    margin-left: 6px;
+
+    background: #ff6b6b;
+    color: white;
+
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* ---------- NOTIFICATION MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .notification-link {
+        position: relative;
+    }
+
+    .notification-link .notification-badge {
+        position: absolute;
+        top: -8px;
+        right: 8px;
+
+        min-width: 20px;
+        height: 18px;
+        padding: 0 5px;
+        margin: 0;
+
+        background: #ff6b6b;
+        color: white;
+
+        border-radius: 6px;
+
+        font-size: 10px;
+        font-weight: 600;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+/* ---------- NOTIFICATION CARDS ---------- */
+
+.notification-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 18px 20px;
+    margin-bottom: 12px;
+
+    background: #ffffff;
+
+    border: 1px solid #eeeeee;
+    border-radius: 14px;
+
+    text-decoration: none;
+    color: #222222;
+
+    transition: 0.2s ease;
+}
+
+.notification-card:hover {
+    transform: translateY(-2px);
+
+    border-color: #ffd0cc;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+
+/* Notification icon */
+
+.notification-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: #fff1ef;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+}
+
+
+/* Notification content */
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-content h5 {
+    margin: 0;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    color: #333333;
+}
+
+.notification-content p {
+    margin: 5px 0 0;
+
+    font-size: 12px;
+
+    color: #888888;
+}
+
+
+/* Unread notification */
+
+.notification-card.unread {
+    background: #fff9f8;
+
+    border-color: #ffd6d2;
+}
+
+
+/* Unread dot */
+
+.unread-dot {
+    width: 9px;
+    height: 9px;
+
+    flex-shrink: 0;
+
+    background: #ff6b6b;
+
+    border-radius: 50%;
+}
+
+/* ---------- MARK ALL AS READ ---------- */
+
+.mark-read-button {
+    background: #ff766f;
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 9px 16px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.mark-read-button:hover {
+    background: #ff625b;
+    transform: translateY(-1px);
+}
+
+/* ---------- NOTIFICATION HEADER ---------- */
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.notification-header h1 {
+    margin-bottom: 8px;
+}
+
+.notification-header p {
+    margin-bottom: 0;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .notification-header {
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .mark-read-button {
+        white-space: nowrap;
+    }
+
+}
+
+/* =================================
+   ACCEPTED APPLICATION PAGE
+================================= */
+
+.application-success-message {
+    margin: 25px 0;
+
+    padding: 25px;
+
+    background: #f1faf3;
+
+    border: 1px solid #cce8d1;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.application-success-message h2 {
+    margin: 0 0 10px;
+
+    color: #3f7d4a;
+
+    font-size: 23px;
+}
+
+.application-success-message p {
+    margin: 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+/* Selected opportunity */
+
+.accepted-opportunity {
+    margin: 22px 0;
+
+    padding: 18px 20px;
+
+    background: #f7fcf8;
+
+    border: 1px solid #d8ecdb;
+    border-radius: 14px;
+
+    text-align: center;
+}
+
+.accepted-opportunity span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #777;
+
+    font-size: 13px;
+}
+
+.accepted-opportunity h2 {
+    margin: 0;
+
+    color: #3f7d4a;
+
+    font-size: 21px;
+
+    font-weight: 700;
+}
+
+
+/* =================================
+   REJECTED APPLICATION PAGE
+================================= */
+
+.application-rejected-message {
+    margin: 25px 0;
+
+    padding: 25px;
+
+    background: #fff7f6;
+
+    border: 1px solid #f2d1ce;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.rejected-icon {
+    width: 52px;
+    height: 52px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffe5e2;
+
+    color: #d9534f;
+
+    border-radius: 50%;
+
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.application-rejected-message h2 {
+    margin: 0 0 12px;
+
+    color: #d9534f;
+
+    font-size: 22px;
+}
+
+.application-rejected-message p {
+    margin: 8px 0;
+
+    color: #666;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.application-rejected-message strong {
+    color: #444;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+    .application-success-message,
+    .application-rejected-message {
+        padding: 20px 16px;
+    }
+
+    .accepted-opportunity {
+        padding: 16px;
+    }
+
+    .accepted-opportunity h2 {
+        font-size: 19px;
+    }
+
+}
+
+/* =================================
+   SETTINGS
+================================= */
+
+.settings-options {
+    margin-top: 28px;
+}
+
+.settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 20px;
+
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+    border-radius: 15px;
+
+    transition: 0.2s ease;
+}
+
+.settings-option:hover {
+    transform: translateY(-2px);
+
+    border-color: #ffd0cc;
+
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.settings-option a {
+    text-decoration: none;
+}
+
+.settings-option strong {
+    display: block;
+
+    color: #292929;
+
+    font-size: 15px;
+}
+
+.settings-option p {
+    margin: 5px 0 0;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+.settings-option > span {
+    color: #ff766f;
+
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Notification Toggle */
+
+.notification-switch {
+    position: relative;
+    display: inline-block;
+    width: 58px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.notification-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.notification-slider {
+    position: absolute;
+    inset: 0;
+    background: #d1d5db;
+    border-radius: 50px;
+    transition: 0.3s ease;
+}
+
+.notification-slider::before {
+    content: "";
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+}
+
+.notification-switch input:checked + .notification-slider {
+    background: #ff6f61;
+}
+
+.notification-switch input:checked + .notification-slider::before {
+    transform: translateX(26px);
+}
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* =================================
+   VIEW PROFILE PAGE
+================================= */
+
+.profile-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-card {
+    padding: 10px 0;
+}
+
+/* Username */
+.profile-card h1 {
+    font-size: 46px;
+    font-weight: 400;
+    margin: 12px 0 8px;
+    color: #292929;
+}
+
+/* Student Profile text */
+.profile-card .login-subtitle {
+    color: #718096;
+    font-size: 18px;
+    margin-bottom: 38px;
+}
+
+/* Profile information */
+.profile-card > p:not(.small-heading):not(.login-subtitle) {
+    color: #292929;
+}
+
+/* Course / Year / Specialization / Skills */
+.profile-card {
+    color: #292929;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+/* About Me */
+.profile-card h3 {
+    margin-top: 28px;
+    margin-bottom: 8px;
+    font-size: 20px;
+}
+
+/* Edit Profile button */
+.profile-card a[href*="edit_profile"] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-top: 24px;
+    padding: 18px 22px;
+
+    background: linear-gradient(
+        90deg,
+        #ff746c,
+        #ffcc70
+    );
+
+    border-radius: 15px;
+
+    color: #222;
+    font-size: 20px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.profile-card a[href*="edit_profile"]:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 650px) {
+
+    .profile-page {
+        width: 100%;
+    }
+
+    .profile-card h1 {
+        font-size: 36px;
+    }
+
+    .profile-card .login-subtitle {
+        font-size: 16px;
+        margin-bottom: 28px;
+    }
+
+    .profile-card {
+        font-size: 16px;
+    }
+
+    .profile-card a[href*="edit_profile"] {
+        font-size: 17px;
+        padding: 16px 18px;
+    }
+
+}
+
+
+
+
+/* =================================
+   EDIT PROFILE PAGE
+================================= */
+
+.profile-page form {
+    margin-top: 30px;
+}
+
+/* Form fields */
+
+.profile-page .login-field {
+    margin-bottom: 22px;
+}
+
+.profile-page .login-field label {
+    display: block;
+    margin-bottom: 8px;
+
+    font-size: 15px;
+    font-weight: 600;
+    color: #292929;
+}
+
+.profile-page .login-field input,
+.profile-page .login-field textarea {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 1px solid #e2ddd4;
+    border-radius: 14px;
+
+    background: #fffdf9;
+
+    font-size: 16px;
+    color: #292929;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.profile-page .login-field input:focus,
+.profile-page .login-field textarea:focus {
+    border-color: #ff9b8f;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 118, 108, 0.10);
+}
+
+.profile-page .login-field textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+
+/* =================================
+   SAVE / CREATE BUTTON
+================================= */
+
+.profile-page .login-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    margin-top: 8px;
+    padding: 18px 22px;
+
+    border: none;
+    border-radius: 15px;
+
+    background: linear-gradient(
+        90deg,
+        #ff746c,
+        #ffcc70
+    );
+
+    color: #222;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.profile-page .login-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 650px) {
+
+    .profile-page .login-field input,
+    .profile-page .login-field textarea {
+        padding: 13px 14px;
+        font-size: 15px;
+    }
+
+    .profile-page .login-button {
+        padding: 16px 18px;
+        font-size: 17px;
+    }
+}
+
+/* FOR THE SEARCH BAR  */
+
+/* =================================
+   SEARCH / FILTER / SORT
+================================= */
+
+.opportunity-filters {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr auto;
+    gap: 12px;
+
+    margin-bottom: 35px;
+    padding: 18px;
+
+    background: #fffaf0;
+    border: 1px solid #eee4d2;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Search Box */
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    min-width: 0;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: 1px solid #e5d8c2;
+    border-radius: 12px;
+
+    padding: 12px 15px;
+
+    background: #ffffff;
+
+    color: #333;
+    font-size: 15px;
+
+    outline: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.search-box input:focus {
+    border-color: #ff9c7a;
+
+    box-shadow: 0 0 0 3px rgba(255, 156, 122, 0.15);
+}
+
+.search-box input::placeholder {
+    color: #999;
+}
+
+
+/* Dropdowns */
+
+.filter-group {
+    min-width: 0;
+}
+
+.filter-group select {
+    width: 100%;
+
+    border: 1px solid #e5d8c2;
+    border-radius: 12px;
+
+    padding: 12px 14px;
+
+    background: #ffffff;
+
+    color: #444;
+    font-size: 15px;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.filter-group select:focus {
+    border-color: #ff9c7a;
+
+    box-shadow: 0 0 0 3px rgba(255, 156, 122, 0.15);
+}
+
+
+/* Buttons */
+
+.search-button,
+.filter-button {
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 20px;
+
+    background: #ff746d;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+}
+
+.search-button:hover,
+.filter-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 768px) {
+
+    .opportunity-filters {
+        grid-template-columns: 1fr;
+        gap: 10px;
+
+        padding: 14px;
+    }
+
+    .search-box {
+        display: block;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    .search-button,
+    .filter-button {
+        width: 100%;
+    }
+}
+
+/* DELETE BUTTON */
+
+.delete-button {
+    display: inline-block;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 12px 20px;
+
+    background: #dc6b63;
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.delete-button:hover {
+    transform: translateY(-2px);
+    color: white;
+}
+
+.delete-title {
+    font-size: 22px;
+    font-weight: 500;
+
+    color: #292929;
+
+    line-height: 1.5;
+
+    overflow-wrap: break-word;
+    word-break: break-word;
+
+    margin: 0 0 20px;
+}
+
+.delete-confirmation {
+    background: #fffaf0;
+
+    border: 1px solid #eee4d2;
+    border-radius: 18px;
+
+    padding: 28px;
+
+    max-width: 700px;
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+.delete-warning {
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #555;
+
+    margin: 0;
+
+    padding-bottom: 22px;
+
+    border-bottom: 1px solid #eee4d2;
+}
+
+.delete-question {
+    font-size: 18px;
+    font-weight: 600;
+    color: #444;
+
+    margin-bottom: 30px;
+}
+
+/* =================================
+   OPPORTUNITY MENU
+================================= */
+
+.opportunity-menu {
+    position: relative;
+}
+
+.opportunity-menu-button {
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #ff766d,
+        #ffc15c
+    );
+
+    color: white;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-bottom: 7px;
+}
+
+.opportunity-menu-dropdown {
+    display: none;
+
+    position: absolute;
+
+    top: 55px;
+    right: 0;
+
+    width: 190px;
+
+    background: white;
+
+    border: 1px solid #eee4d2;
+    border-radius: 14px;
+
+    padding: 8px;
+
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+
+    z-index: 100;
+}
+
+.opportunity-menu-dropdown.show {
+    display: block;
+}
+
+.opportunity-menu-dropdown a {
+    display: block;
+
+    padding: 11px 13px;
+
+    border-radius: 9px;
+
+    text-decoration: none;
+
+    color: #333;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.opportunity-menu-dropdown a:hover {
+    background: #fff6e8;
+}
+
+.opportunity-menu-dropdown .delete-option {
+    color: #dc5c55;
+}
+
+.opportunity-menu-dropdown .delete-option:hover {
+    background: #fff0ef;
+}
+
+.application-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Top row: Leave Team + Chat */
+.application-top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Leave Team form */
+.application-top-buttons form {
+    width: 190px;
+    height: 62px;
+    margin: 0;
+
+    display: flex;
+}
+
+.application-top-buttons form .reject-button {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 16px;
+}
+
+
+/* Chat button */
+.application-top-buttons .application-chat-button {
+    width: 190px;
+    height: 62px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    background: #fff;
+    color: #222;
+
+    border: 1px solid #e5e5e5;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-decoration: none !important;
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+/* Remove underline from Chat text and arrow */
+.application-top-buttons .application-chat-button span {
+    text-decoration: none !important;
+}
+
+/* Chat hover */
+.application-top-buttons .application-chat-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+/* View Opportunity */
+.application-buttons .application-view-button {
+    width: 100%;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+/* FOR MESSAGES  */
+/* =================================
+   MESSAGES PAGE
+================================= */
+
+.messages-page {
+    max-width: 900px;
+    margin: 35px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+/* ---------- MESSAGE CARD ---------- */
+
+.message-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    padding: 20px 22px;
+
+    background: #fffaf1;
+
+    border: 1px solid #eee4d2;
+
+    border-radius: 18px;
+
+    text-decoration: none !important;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+
+    transition: 0.2s ease;
+}
+
+
+.message-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 9px 25px rgba(0, 0, 0, 0.09);
+
+    border-color: #ffd5b0;
+}
+
+
+/* ---------- ICON ---------- */
+
+.message-card-icon {
+    width: 52px;
+    height: 52px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: linear-gradient(
+        135deg,
+        #ff766f,
+        #ffc566
+    );
+
+    font-size: 24px;
+}
+
+
+/* ---------- CONTENT ---------- */
+
+.message-card-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.message-card-title {
+    margin: 0;
+
+    color: #292929;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.message-card-user {
+    margin: 4px 0 6px;
+
+    color: #ff766f;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+.message-card-last-message {
+    margin: 0;
+
+    color: #777;
+
+    font-size: 14px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ---------- RIGHT SIDE ---------- */
+
+.message-card-right {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+.message-card-time {
+    color: #888;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* ---------- UNREAD BADGE ---------- */
+
+.message-unread-badge {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 21px;
+    height: 21px;
+
+    padding: 0 6px;
+
+    border-radius: 50px;
+
+    background: #ff625d;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* ---------- UNREAD CARD ---------- */
+
+.unread-message-card {
+    border-color: #ffd0ca;
+
+    background: #fff8f5;
+}
+
+
+.unread-message-card .message-card-title {
+    color: #222;
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 768px) {
+
+    .messages-page {
+        margin-top: 25px;
+
+        gap: 12px;
+    }
+
+
+    .message-card {
+        gap: 12px;
+
+        padding: 15px;
+
+        border-radius: 15px;
+    }
+
+
+    .message-card-icon {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 12px;
+
+        font-size: 20px;
+    }
+
+
+    .message-card-title {
+        font-size: 16px;
+    }
+
+
+    .message-card-user {
+        font-size: 13px;
+
+        margin: 3px 0 5px;
+    }
+
+
+    .message-card-last-message {
+        font-size: 12px;
+    }
+
+
+    .message-card-time {
+        font-size: 10px;
+    }
+
+
+    .message-unread-badge {
+        min-width: 19px;
+        height: 19px;
+
+        font-size: 10px;
+    }
+
+}
+
+
+
+
+
+
+

@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Opportunity
+{% endblock %}
+
+{% block content %}
+
+<div class="create-opportunity">
+
+    <div class="create-header">
+
+        <p class="small-heading">
+            LPU OPPORTUNITIES
+        </p>
+
+        <h1>Edit Opportunity</h1>
+
+        <p>
+            Update the details of your opportunity.
+        </p>
+
+    </div>
+
+
+    <form method="POST" class="opportunity-form">
+
+        {% csrf_token %}
+
+
+        <!-- TITLE -->
+
+        <div class="form-group">
+
+            <label for="title">
+                Opportunity Title
+            </label>
+
+            <input
+                type="text"
+                id="title"
+                name="title"
+                value="{{ opportunity.title }}"
+                placeholder="e.g. Science Club Recruitment"
+                required
+            >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group">
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                rows="5"
+                placeholder="Describe the opportunity..."
+            >{{ opportunity.description }}</textarea>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="form-group">
+
+            <label for="category">
+                Opportunity Category
+            </label>
+
+            <select
+                id="category"
+                name="category"
+                required
+            >
+
+                <option value="" disabled>
+                    Select a category
+                </option>
+
+                <option value="hackathon"
+                    {% if opportunity.category == "hackathon" %}selected{% endif %}>
+                    Hackathon
+                </option>
+
+                <option value="research"
+                    {% if opportunity.category == "research" %}selected{% endif %}>
+                    Research
+                </option>
+
+                <option value="internship"
+                    {% if opportunity.category == "internship" %}selected{% endif %}>
+                    Internship
+                </option>
+
+                <option value="workshop"
+                    {% if opportunity.category == "workshop" %}selected{% endif %}>
+                    Workshop
+                </option>
+
+                <option value="competition"
+                    {% if opportunity.category == "competition" %}selected{% endif %}>
+                    Competition
+                </option>
+
+                <option value="event"
+                    {% if opportunity.category == "event" %}selected{% endif %}>
+                    Event
+                </option>
+
+                <option value="project"
+                    {% if opportunity.category == "project" %}selected{% endif %}>
+                    Project
+                </option>
+
+                <option value="club"
+                    {% if opportunity.category == "club" %}selected{% endif %}>
+                    Club / Society
+                </option>
+
+                <option value="volunteering"
+                    {% if opportunity.category == "volunteering" %}selected{% endif %}>
+                    Volunteering
+                </option>
+
+                <option value="other"
+                    {% if opportunity.category == "other" %}selected{% endif %}>
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- STUDENTS -->
+
+        <div class="form-group">
+
+            <label for="students_needed">
+                Students Needed
+            </label>
+
+            <input
+                type="number"
+                id="students_needed"
+                name="students_needed"
+                min="1"
+                value="{{ opportunity.students_needed }}"
+                placeholder="e.g. 5"
+                required
+            >
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="form-actions">
+
+            <a
+                href="{% url 'opportunity_detail' opportunity.id %}"
+                class="btn-back"
+            >
+                ← Cancel
+            </a>
+
+            <button
+                type="submit"
+                class="btn-apply"
+            >
+                Save Changes
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

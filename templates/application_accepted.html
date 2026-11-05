@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Congratulations{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-card">
+
+        <p class="small-heading">
+            LPU OPPORTUNITIES
+        </p>
+
+        <h1>
+            🎉 Congratulations!
+        </h1>
+
+        <p class="login-subtitle">
+            Your application has been accepted.
+        </p>
+        <h2>
+        {{ opportunity.title }}
+        </h2>
+
+        <div class="application-success-message">
+
+            <h2>
+                You're selected!
+            </h2>
+
+            <p>
+                The opportunity creator has accepted your application.
+                You can now participate in this opportunity.
+            </p>
+
+        </div>
+
+        <a href="{% url 'home' %}" class="login-button">
+            <span>Back to Home</span>
+            <span>→</span>
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
