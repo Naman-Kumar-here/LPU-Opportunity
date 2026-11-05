@@ -17,6 +17,9 @@ from django.core.mail import send_mail
 import secrets
 from django.utils import timezone
 
+import resend
+from django.conf import settings
+resend.api_key = settings.RESEND_API_KEY
 
 # Create your views here.
 
@@ -121,32 +124,27 @@ def register_user(request):
                 request.session["verification_email"] = email
 
                 # Send new OTP
-                send_mail(
-                    subject="LPU Opportunities - Email Verification",
+                resend.Emails.send({
+                    "from": "LPU Opportunities <onboarding@resend.dev>",
+                    "to": [email],
+                    "subject": "LPU Opportunities - Email Verification",
+                    "text": f"""
+                Hello {username},
 
-                    message=f"""
-Hello {username},
+                Welcome to LPU Opportunities!
 
-Welcome to LPU Opportunities!
+                Your email verification OTP is:
 
-Your new email verification OTP is:
+                {otp}
 
-{otp}
+                This OTP is valid for 10 minutes.
 
-This OTP is valid for 10 minutes.
+                If you did not create this account, please ignore this email.
 
-If you did not create this account, please ignore this email.
-
-Thanks,
-LPU Opportunities
-""",
-
-                    from_email="lpuopportunity67@gmail.com",
-
-                    recipient_list=[email],
-
-                    fail_silently=False,
-                )
+                Thanks,
+                LPU Opportunities
+                """
+                })
 
                 messages.success(
                     request,
@@ -224,32 +222,27 @@ LPU Opportunities
 
 
         # Send OTP email
-        send_mail(
-            subject="LPU Opportunities - Email Verification",
+        resend.Emails.send({
+            "from": "LPU Opportunities <onboarding@resend.dev>",
+            "to": [email],
+            "subject": "LPU Opportunities - Email Verification",
+            "text": f"""
+        Hello {username},
 
-            message=f"""
-Hello {username},
+        Welcome to LPU Opportunities!
 
-Welcome to LPU Opportunities!
+        Your email verification OTP is:
 
-Your email verification OTP is:
+        {otp}
 
-{otp}
+        This OTP is valid for 10 minutes.
 
-This OTP is valid for 10 minutes.
+        If you did not create this account, please ignore this email.
 
-If you did not create this account, please ignore this email.
-
-Thanks,
-LPU Opportunities
-""",
-
-            from_email="lpuopportunity67@gmail.com",
-
-            recipient_list=[email],
-
-            fail_silently=False,
-        )
+        Thanks,
+        LPU Opportunities
+        """
+        })
 
 
         messages.success(

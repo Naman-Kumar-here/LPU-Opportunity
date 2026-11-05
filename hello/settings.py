@@ -140,6 +140,8 @@ EMAIL_HOST_USER = "lpuopportunity67@gmail.com"
 
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY")
+
 EMAIL_TIMEOUT = 10
 
 
